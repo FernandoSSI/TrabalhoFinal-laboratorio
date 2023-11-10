@@ -131,6 +131,7 @@ void atualizarDespesa()
     char id_nome[] = "ID: ";
     printf("Qual o id da despesa que você deseja modificar? ");
     scanf("%9s", id); // Limita a entrada a 9 caracteres para evitar estouro de buffer
+    strcat(id_nome, id);
     getchar(); // Consumir o caractere de nova linha
 
     FILE *arquivo = fopen("despesas.txt", "r");
@@ -150,17 +151,16 @@ void atualizarDespesa()
 
     char linha[200];
     int encontrado = 0;
+    int pular = 4;
 
     while (fgets(linha, sizeof(linha), arquivo))
     {
         if (strstr(linha, id_nome))
         {
-            if (strstr(linha, id))
-            {
                 encontrado = 1;
                 fputs(linha, temp); // Mantém a linha do ID
 
-                char data[11];
+                char data[100];
                 char descricao[101];
                 char valor[101];
 
@@ -176,15 +176,20 @@ void atualizarDespesa()
 
                 printf("Informe o valor da despesa: ");
                 fgets(valor, sizeof(valor), stdin);
-                valor[strlen(valor) - 1] = '\0'; // Remova o caractere de nova linha
-                getchar(); // Consumir o caractere de nova linha
+                //valor[strlen(valor) - 1] = '\0'; // Remova o caractere de nova linha
+                
 
                 fprintf(temp, " Data: %s\n Descrição: %s\n Valor: %s\n", data, descricao, valor);
-            }
-            else
-            {
-                fputs(linha, temp);
-            }
+            
+                if(pular > 0){
+                    for (int i = 0; i < pular; ++i) {
+                        if (fgets(linha, sizeof(linha), arquivo) == NULL) {
+                            
+                        }
+                    }
+                    pular = 0;
+                }
+                
         }
         else
         {

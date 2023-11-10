@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Fernandes/Documents/ESTUDO/C/TrabalhoFinal-laboratório",
-      "program": "c:/Users/Fernandes/Documents/ESTUDO/C/TrabalhoFinal-laboratório/build/Debug/outDebug",
+      "cwd": "c:/Users/Fernandes/Documents/ESTUDO/C/TrabalhoFinal-laboratorio",
+      "program": "c:/Users/Fernandes/Documents/ESTUDO/C/TrabalhoFinal-laboratorio/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
