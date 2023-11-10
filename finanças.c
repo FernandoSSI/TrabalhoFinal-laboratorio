@@ -65,7 +65,7 @@ void listarDespesas(){
 // FUNÇÃOPARA EXCLUIR DESPESA DO ARQUIVO POR ID NUMÉRICO
 void excluirDespesa(){
     char id[10];
-    char id_nome[] = "ID: ";
+    char id_nome[15] = "ID: ";
     printf("Qual o id da despesa que você deseja excluir? ");
     scanf("%s", id);
     strcat(id_nome, id);
@@ -113,11 +113,12 @@ void atualizarDespesa() {
 
     // PEDINDO O ID PARA MODIFICAÇÃO DA DESPESA REFERENTE AO MESMO, E CONCATENAÇÃO DE TEXTO PARA PADRONIZAÇÃO DE LINHAS
     char id[10];
-    char id_nome[] = "ID: ";
+    char id_nome[15] = "ID: ";
     printf("Qual o id da despesa que você deseja modificar? ");
     scanf("%9s", id); 
     strcat(id_nome, id);
     getchar(); 
+    printf("%s", id_nome);
 
     // ABRINDO ARQUIVO ORIGINAL
     FILE *arquivo = fopen("despesas.txt", "r");
@@ -197,7 +198,7 @@ void atualizarDespesa() {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------
+
 // ------------------------BLOCO DO CÓDIGO QUE LIDAA COM OS GANHOS ------------------------
 
 typedef struct ganho{
@@ -260,7 +261,7 @@ void listarGanhos(){
 // FUNÇÃOPARA EXCLUIR ganho DO ARQUIVO POR ID NUMÉRICO
 void excluirGanho(){
     char id[10];
-    char id_nome[] = "ID: ";
+    char id_nome[15] = "ID: ";
     printf("Qual o id da ganho que você deseja excluir? ");
     scanf("%s", id);
     strcat(id_nome, id);
@@ -308,11 +309,12 @@ void atualizarGanho() {
 
     // PEDINDO O ID PARA MODIFICAÇÃO DO GANHO REFERENTE AO MESMO, E CONCATENAÇÃO DE TEXTO PARA PADRONIZAÇÃO DE LINHAS
     char id[10];
-    char id_nome[] = "ID: ";
+    char id_nome[15] = "ID: ";
     printf("Qual o id da ganho que você deseja modificar? ");
     scanf("%9s", id); 
     strcat(id_nome, id);
     getchar(); 
+    printf("%s", id_nome);
 
     // ABRINDO ARQUIVO ORIGINAL
     FILE *arquivo = fopen("ganhos.txt", "r");
@@ -391,15 +393,32 @@ void atualizarGanho() {
         remove("temp.txt"); // Remove o arquivo temporário, pois a modificação não foi bem-sucedida
     }
 }
-// ---------------------------------------------------------------------------------------------------
+
+// ------------------------ BLOCO DO CÓDIGO QUE LIDAA COM O SALDO ------------------------
 
 // FUNÇÃO PRINCIPAL
 int main() {
+    printf("\n");
+    printf("   __||__\n");
+    printf("  // ||  \\\\\n");
+    printf(" ||  ||\n");
+    printf(" ||  ||\n");
+    printf("  \\\\ ||\n");
+    printf("   \\\\||__\n");
+    printf("     ||  \\\\ \n");
+    printf("     ||   \\\\ \n");
+    printf("     ||   ||\n");
+    printf("     ||   ||\n");
+    printf(" \\\\__||__//"); printf(" I S T E M A   D E   G E S T A O   F I N A N C E I R A\n");
+    printf("     ||\n");
+    printf(" \n");
+
+    printf(" Como podemos te ajudar hoje? \n");
     while (1) {
 
         // HUB DE ESCOLHA
         printf("\n"); 
-        printf(" +-------SISTEMA DE GESTÃO DE FINANÇAS PESSOAIS-------+\n");
+        printf(" +----------------------------------------------------+\n");
         printf(" | 1. Adicionar Despesa                               |\n");
         printf(" | 2. Listar Despesas                                 |\n");
         printf(" | 3. excluir Despesa                                 |\n");
@@ -410,7 +429,7 @@ int main() {
         printf(" | 8. Modificar Ganho                                 |\n");
         printf(" | 9. Sair                                            |\n");
         printf(" +----------------------------------------------------+\n");
-        printf("Escolha uma opção: ");
+        printf(" Escolha uma opção: ");
 
         int opcao;
         scanf("%d", &opcao);
