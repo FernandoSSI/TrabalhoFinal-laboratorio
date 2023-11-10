@@ -24,7 +24,7 @@ void adicionarDespesa(){
     printf("Informe a data da despesa: ");
     fgets(novo->data, 100, stdin);
     novo->descricao[0] = '\0';
-    printf("Informe a descrição da despesa: ");
+    printf("Informe a descricao da despesa: ");
     fgets(novo->descricao, 100, stdin);
     printf("Informe o valor da despesa: ");
     scanf("%f", &novo->valor);
@@ -66,7 +66,7 @@ void listarDespesas(){
 void excluirDespesa(){
     char id[10];
     char id_nome[15] = "ID: ";
-    printf("Qual o id da despesa que você deseja excluir? ");
+    printf("Qual o id da despesa que voce deseja excluir? ");
     scanf("%s", id);
     strcat(id_nome, id);
 
@@ -81,7 +81,7 @@ void excluirDespesa(){
     FILE *temp = fopen("temp.txt", "w");
     if (temp == NULL){
         fclose(arquivo);
-        printf("Erro ao criar arquivo temporário.\n");
+        printf("Erro ao criar arquivo temporario.\n");
         exit(1);
     }
 
@@ -114,7 +114,7 @@ void atualizarDespesa() {
     // PEDINDO O ID PARA MODIFICAÇÃO DA DESPESA REFERENTE AO MESMO, E CONCATENAÇÃO DE TEXTO PARA PADRONIZAÇÃO DE LINHAS
     char id[10];
     char id_nome[15] = "ID: ";
-    printf("Qual o id da despesa que você deseja modificar? ");
+    printf("Qual o id da despesa que voce deseja modificar? ");
     scanf("%9s", id); 
     strcat(id_nome, id);
     getchar(); 
@@ -131,7 +131,7 @@ void atualizarDespesa() {
     FILE *temp = fopen("temp.txt", "w");
     if (temp == NULL){
         fclose(arquivo);
-        printf("Erro ao criar arquivo temporário.\n");
+        printf("Erro ao criar arquivo temporario.\n");
         exit(1);
     }
 
@@ -155,7 +155,7 @@ void atualizarDespesa() {
                 fgets(data, sizeof(data), stdin);
                 data[strcspn(data, "\n")] = '\0'; 
                 
-                printf("Informe a descrição da despesa: ");
+                printf("Informe a descricao da despesa: ");
                 fgets(descricao, sizeof(descricao), stdin);
                 descricao[strcspn(descricao, "\n")] = '\0';
                 
@@ -189,11 +189,11 @@ void atualizarDespesa() {
         }
 
         if (rename("temp.txt", "despesas.txt") != 0) {
-            printf("Erro ao renomear o arquivo temporário.\n");
+            printf("Erro ao renomear o arquivo temporario.\n");
             exit(1);
         }
     } else {
-        printf("Despesa com ID %s não encontrada.\n", id);
+        printf("Despesa com ID %s nao encontrada.\n", id);
         remove("temp.txt"); // Remove o arquivo temporário, pois a modificação não foi bem-sucedida
     }
 }
@@ -220,7 +220,7 @@ void adicionarGanho(){
     printf("Informe a data do ganho: ");
     fgets(novo->data, 100, stdin);
     novo->descricao[0] = '\0';
-    printf("Informe a descrição do ganho: ");
+    printf("Informe a descricaoo do ganho: ");
     fgets(novo->descricao, 100, stdin);
     printf("Informe o valor do ganho: ");
     scanf("%f", &novo->valor);
@@ -277,7 +277,7 @@ void excluirGanho(){
     FILE *temp = fopen("temp.txt", "w");
     if (temp == NULL){
         fclose(arquivo);
-        printf("Erro ao criar arquivo temporário.\n");
+        printf("Erro ao criar arquivo temporario.\n");
         exit(1);
     }
 
@@ -310,7 +310,7 @@ void atualizarGanho() {
     // PEDINDO O ID PARA MODIFICAÇÃO DO GANHO REFERENTE AO MESMO, E CONCATENAÇÃO DE TEXTO PARA PADRONIZAÇÃO DE LINHAS
     char id[10];
     char id_nome[15] = "ID: ";
-    printf("Qual o id da ganho que você deseja modificar? ");
+    printf("Qual o id da ganho que voce deseja modificar? ");
     scanf("%9s", id); 
     strcat(id_nome, id);
     getchar(); 
@@ -327,7 +327,7 @@ void atualizarGanho() {
     FILE *temp = fopen("temp.txt", "w");
     if (temp == NULL){
         fclose(arquivo);
-        printf("Erro ao criar arquivo temporário.\n");
+        printf("Erro ao criar arquivo temporario.\n");
         exit(1);
     }
 
@@ -351,7 +351,7 @@ void atualizarGanho() {
                 fgets(data, sizeof(data), stdin);
                 data[strcspn(data, "\n")] = '\0'; // Remova todos os caracteres de nova linha
                 
-                printf("Informe a descrição do ganho: ");
+                printf("Informe a descricao do ganho: ");
                 fgets(descricao, sizeof(descricao), stdin);
                 descricao[strcspn(descricao, "\n")] = '\0';
                 
@@ -429,7 +429,7 @@ int main() {
         printf(" | 8. Modificar Ganho                                 |\n");
         printf(" | 9. Sair                                            |\n");
         printf(" +----------------------------------------------------+\n");
-        printf(" Escolha uma opção: ");
+        printf(" Escolha uma opcao: ");
 
         int opcao;
         scanf("%d", &opcao);
@@ -438,39 +438,39 @@ int main() {
         switch (opcao)
         {
         case 1:
-            system("clear");
+            system("cls");
             adicionarDespesa();
             break;
         case 2:
-            system("clear");    
+            system("cls");    
             listarDespesas();
             break;
         case 3:
-            system("clear");
+            system("cls");
             excluirDespesa();
             break;
         case 4:
-            system("clear");
+            system("cls");
             atualizarDespesa();
             break;
         case 5:
-            system("clear");
+            system("cls");
             adicionarGanho();
             break;
         case 6:
-            system("clear");
+            system("cls");
             listarGanhos();
             break;
         case 7:
-            system("clear");
+            system("cls");
             excluirGanho();
             break;
         case 8:
-            system("clear");
+            system("cls");
             atualizarGanho();
             break;
         case 9:
-            system("clear");
+            system("cls");
             printf("Saindo do programa.\n");
             exit(0);
         default:
