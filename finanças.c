@@ -31,11 +31,24 @@ void adicionarDespesa(){
     getchar();
 
     // ABRINDO O ARQUIVO TRATANDO ERRO, E ESCREVENDO NELE
-    FILE *arquivo = fopen("despesas.txt", "a");
-    if (arquivo == NULL){
-        printf("Erro ao abrir o arquivo de despesas.\n");
+    FILE *arquivo = fopen("despesas.txt", "at");
+    if (arquivo == NULL) {
+        // Se o arquivo não existe, tenta criar um novo
+        arquivo = fopen("despesas.txt", "w");
+        if (arquivo == NULL) {
+            printf("Erro ao criar o arquivo despesas.\n");
+            return;
+        }
+        fclose(arquivo);
+        // Agora tenta abrir novamente para escrever
+        arquivo = fopen("despesas.txt", "a");
+    }
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo despesas.\n");
         return;
     }
+
     fprintf(arquivo, "ID: %d\n Data: %s Descrição: %s Valor: %.2f\n\n",
             novo->id,
             novo->data,
@@ -118,7 +131,6 @@ void atualizarDespesa() {
     scanf("%9s", id); 
     strcat(id_nome, id);
     getchar(); 
-    printf("%s", id_nome);
 
     // ABRINDO ARQUIVO ORIGINAL
     FILE *arquivo = fopen("despesas.txt", "r");
@@ -227,11 +239,25 @@ void adicionarGanho(){
     getchar();
 
     // ABRINDO O ARQUIVO TRATANDO ERRO, E ESCREVENDO NELE
-    FILE *arquivo = fopen("ganhos.txt", "a");
-    if (arquivo == NULL){
-        printf("Erro ao abrir o arquivo de ganhos.\n");
+    FILE *arquivo = fopen("ganhos.txt", "at");
+    if (arquivo == NULL) {
+        // Se o arquivo não existe, tenta criar um novo
+        arquivo = fopen("ganhos.txt", "w");
+        if (arquivo == NULL) {
+            printf("Erro ao criar o arquivo ganhos.\n");
+            return;
+        }
+        fclose(arquivo);
+        // Agora tenta abrir novamente para escrever
+        arquivo = fopen("ganhos.txt", "a");
+    }
+
+    if (arquivo == NULL) {
+        printf("Erro ao abrir o arquivo ganhos.\n");
         return;
     }
+
+
     fprintf(arquivo, "ID: %d\n Data: %s Descrição: %s Valor: %.2f\n\n",
             novo->id,
             novo->data,
