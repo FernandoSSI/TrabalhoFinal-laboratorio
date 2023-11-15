@@ -538,9 +538,9 @@ void adicionar_saldo()
 
     soma_saldo = soma_ganhos - soma_despesas;
 
-    fprintf(saldo, "O TOTAL DE SUAS DEPESAS É: %.2f", soma_despesas);
-    fprintf(saldo, "O TOTAL DE SEUS GANHOS É: %.2f", soma_ganhos);
-    fprintf(saldo, "SEU SALDO TOTAL É: %.2f", soma_saldo);
+    fprintf(saldo, "O TOTAL DE SUAS DEPESAS É: %.2f\n", soma_despesas);
+    fprintf(saldo, "O TOTAL DE SEUS GANHOS É: %.2f\n", soma_ganhos);
+    fprintf(saldo, "SEU SALDO TOTAL É: %.2f\n", soma_saldo);
 
     fclose(despesas);
     fclose(ganhos);
@@ -602,7 +602,8 @@ int main()
         printf(" | 6. Listar Ganhos                                   |\n");
         printf(" | 7. Excluir Ganho                                   |\n");
         printf(" | 8. Modificar Ganho                                 |\n");
-        printf(" | 9. Sair                                            |\n");
+        printf(" | 9. Exibir saldo                                    |\n");
+        printf(" | 10. Sair                                           |\n");
         printf(" +----------------------------------------------------+\n");
         printf(" Escolha uma opcao: ");
 
@@ -613,40 +614,53 @@ int main()
         switch (opcao)
         {
         case 1:
-            system("cls");
+            system("clear");
             adicionarDespesa();
+            adicionar_saldo();
             break;
         case 2:
-            system("cls");
+            system("clear");
             listarDespesas();
+            adicionar_saldo();
             break;
         case 3:
-            system("cls");
+            system("clear");
             excluirDespesa();
+            adicionar_saldo();
             break;
         case 4:
-            system("cls");
+            system("clear");
             atualizarDespesa();
+            adicionar_saldo();
             break;
         case 5:
-            system("cls");
+            system("clear");
             adicionarGanho();
+            adicionar_saldo();
             break;
         case 6:
-            system("cls");
+            system("clear");
             listarGanhos();
+            adicionar_saldo();
             break;
         case 7:
-            system("cls");
+            system("clear");
             excluirGanho();
+            adicionar_saldo();
             break;
         case 8:
-            system("cls");
+            system("clear");
             atualizarGanho();
+            adicionar_saldo();
             break;
         case 9:
-            system("cls");
+            system("clear");
+            exibir_saldo();
+            break;
+        case 10:
+            system("clear");
             printf("Saindo do programa.\n");
+            adicionar_saldo();
             exit(0);
         default:
             printf("Opção inválida. Tente novamente.\n");
