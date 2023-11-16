@@ -53,6 +53,7 @@ void adicionarDespesa()
         return;
     }
 
+    // registrando as informações no arquivo txt
     fprintf(arquivo, "ID: %d\n Data: %s Descrição: %s Valor: %.2f\n\n",
             novo->id,
             novo->data,
@@ -65,6 +66,7 @@ void adicionarDespesa()
 // FUNÇÃO PARA LISTAGEM DE DESPESAS
 void listarDespesas()
 {
+    //abrindo o arquivo e tratando erro
     char *nomeArquivo = "despesas.txt";
     FILE *arquivo = fopen(nomeArquivo, "r");
 
@@ -74,6 +76,7 @@ void listarDespesas()
         return;
     }
 
+    // imprimindo linha por linha do arquivo
     char linha[200];
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
@@ -184,6 +187,7 @@ void atualizarDespesa()
             char descricao[101];
             char valor[101];
 
+            // coletando as novas informações do item
             printf("Informe a data da despesa: ");
             fgets(data, sizeof(data), stdin);
             data[strcspn(data, "\n")] = '\0';
@@ -305,6 +309,7 @@ void adicionarGanho()
 // FUNÇÃO PARA LISTAGEM DE GANHOS
 void listarGanhos()
 {
+    //abrindo arquivo e tratando erro
     char *nomeArquivo = "ganhos.txt";
     FILE *arquivo = fopen(nomeArquivo, "r");
 
@@ -314,6 +319,7 @@ void listarGanhos()
         return;
     }
 
+    //imprimindo linha por linha do arquivo
     char linha[200];
     while (fgets(linha, sizeof(linha), arquivo) != NULL)
     {
@@ -424,6 +430,7 @@ void atualizarGanho()
             char descricao[101];
             char valor[101];
 
+            //coletando as novas informações do item
             printf("Informe a data do ganho: ");
             fgets(data, sizeof(data), stdin);
             data[strcspn(data, "\n")] = '\0'; // Remova todos os caracteres de nova linha
@@ -484,11 +491,12 @@ void atualizarGanho()
 // ------------------------ BLOCO DO CÓDIGO QUE LIDAA COM O SALDO ------------------------
 
 // FUNÇÃO PARA ADICIONAR SALDO - (POR SEGURANÇA O SALDO SÓ PODE SER MODIFICADO AO MODIFICAR AS DESPESAS OU OS GANHOS)
-void adicionar_saldo()
+void adicionarSaldo()
 {
 
     char valorstr[] = "valor";
 
+    //abrindo arquivo de ganhos no modo leitura
     FILE *ganhos = fopen("ganhos.txt", "r");
     if (ganhos == NULL)
     {
@@ -496,6 +504,7 @@ void adicionar_saldo()
         return;
     }
 
+    //abrindo arquivo de despesas no modo leitura
     FILE *despesas = fopen("despesas.txt", "r");
     if (despesas == NULL)
     {
@@ -503,6 +512,7 @@ void adicionar_saldo()
         return;
     }
 
+    //abrindo arquivo de saldo no modo escrita
     FILE *saldo = fopen("saldo.txt", "w");
     if (saldo == NULL)
     {
@@ -516,6 +526,7 @@ void adicionar_saldo()
 
     char linha[100];
 
+    //armazenando o valor contido em cada linha do arquivo de despesas que contém a string "Valor:"
     while (fgets(linha, sizeof(linha), despesas) != NULL)
     {
         if (strstr(linha, "Valor: ") != NULL)
@@ -526,6 +537,7 @@ void adicionar_saldo()
         }
     }
 
+    //armazenando o valor contido em cada linha do arquivo de ganhos que contém a string "Valor:"
     while (fgets(linha, sizeof(linha), ganhos) != NULL)
     {
         if (strstr(linha, "Valor: ") != NULL)
@@ -538,8 +550,8 @@ void adicionar_saldo()
 
     soma_saldo = soma_ganhos - soma_despesas;
 
-    fprintf(saldo, "O TOTAL DE SUAS DEPESAS É: %.2f\n", soma_despesas);
     fprintf(saldo, "O TOTAL DE SEUS GANHOS É: %.2f\n", soma_ganhos);
+    fprintf(saldo, "O TOTAL DE SUAS DEPESAS É: %.2f\n", soma_despesas);
     fprintf(saldo, "SEU SALDO TOTAL É: %.2f\n", soma_saldo);
 
     fclose(despesas);
@@ -548,7 +560,7 @@ void adicionar_saldo()
 }
 
 // FUNÇÃO PARA EXIBIR SALDO TOTAL
-void exibir_saldo()
+void exibirSaldo()
 {
 
     char *nomeArquivo = "saldo.txt";
@@ -611,51 +623,53 @@ int main()
         scanf("%d", &opcao);
 
         getchar();
+
+        // switch e case de opções, com clear de terminal em cada operação
         switch (opcao)
         {
         case 1:
             system("clear");
             adicionarDespesa();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 2:
             system("clear");
             listarDespesas();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 3:
             system("clear");
             excluirDespesa();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 4:
             system("clear");
             atualizarDespesa();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 5:
             system("clear");
             adicionarGanho();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 6:
             system("clear");
             listarGanhos();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 7:
             system("clear");
             excluirGanho();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 8:
             system("clear");
             atualizarGanho();
-            adicionar_saldo();
+            adicionarSaldo();
             break;
         case 9:
             system("clear");
-            exibir_saldo();
+            exibirSaldo();
             break;
         case 10:
             system("clear");
